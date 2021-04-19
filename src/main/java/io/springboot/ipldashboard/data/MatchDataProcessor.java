@@ -6,7 +6,7 @@
 
 package io.springboot.ipldashboard.data;
 
-import io.springboot.ipldashboard.model.Match;
+import io.springboot.ipldashboard.model.MatchOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,33 +16,33 @@ import java.time.LocalDate;
 
 
 //this our class MatchProcessor that implements it ItemProcessor from springframework itemProcessor. it take an iput and gives an output
-    public class MatchDataProcessor implements ItemProcessor<MatchInput, Match> {
+    public class MatchDataProcessor implements ItemProcessor<MatchInput, MatchOutput> {
 
 
         private static final Logger log = LoggerFactory.getLogger(MatchDataProcessor.class);
 
 
-        @Override //the process is going to take the matchinput as Paramater and going to return the Match data.
-        public Match process(final MatchInput matchInput) throws Exception {
+        @Override //the process is going to take the matchinput as Paramater and going to return the MatchOutput data.
+        public MatchOutput process(final MatchInput matchInput) throws Exception {
 
 
             //what does it need to do ? well it needs to look into the data values from the matchInput parameter and
-                //create new Match values - which is what we want -
-            //its going to populate our matchInput in the parameter into match instance here. and return the match
+                //create new MatchOutput values - which is what we want -
+            //its going to populate our matchInput in the parameter into MatchOutput instance here. and return the MatchOutput
 
-            Match match = new Match();
+            MatchOutput MatchOutput = new MatchOutput();
             //1.we need to copy the values that are same from input to output
             //more like copy constructor except that we are tweaking little bit here!
 
 
-            match.setId(Long.parseLong(matchInput.getId()));
-            match.setCity(matchInput.getCity());
+            MatchOutput.setId(Long.parseLong(matchInput.getId()));
+            MatchOutput.setCity(matchInput.getCity());
 
 
-            match.setDate(LocalDate.parse(matchInput.getDate()));
+            MatchOutput.setDate(LocalDate.parse(matchInput.getDate()));
 
-            match.setPlayerOfMatch(matchInput.getPlayer_of_match());
-            match.setVenue(matchInput.getNeutral_venue());
+            MatchOutput.setPlayerOfMatch(matchInput.getPlayer_of_match());
+            MatchOutput.setVenue(matchInput.getNeutral_venue());
 
 
 
@@ -72,19 +72,19 @@ import java.time.LocalDate;
             }
 
 
-            match.setTeam1(firstInningsTeam);
-            match.setTeam2(secondInningsTeam);
+            MatchOutput.setTeam1(firstInningsTeam);
+            MatchOutput.setTeam2(secondInningsTeam);
 
 
-            match.setTossWinner(matchInput.getToss_winner());
-            match.setTossDecision(matchInput.getToss_decision());
-            match.setResult(matchInput.getResult());
-            match.setResultMargin(matchInput.getResult_margin());
-            match.setUmpire1(matchInput.getUmpire1());
-            match.setUmpire2(matchInput.getUmpire2());
+            MatchOutput.setTossWinner(matchInput.getToss_winner());
+            MatchOutput.setTossDecision(matchInput.getToss_decision());
+            MatchOutput.setResult(matchInput.getResult());
+            MatchOutput.setResultMargin(matchInput.getResult_margin());
+            MatchOutput.setUmpire1(matchInput.getUmpire1());
+            MatchOutput.setUmpire2(matchInput.getUmpire2());
 
 
-            return match;
+            return MatchOutput;
 
         }
 
