@@ -1,12 +1,20 @@
 package io.springboot.ipldashboard.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 /*
     This is the output for our data from the input file(MatchInput) has been processed by our our processor class.
     and this will be how we will save it to our database as the final data format
  */
-public class Match {
+
+//JPA will create a table for us using the entity annotation
+
+@Entity
+public class MatchOutput {
+
+    @Id // So it knows this is an Identifier!
     private long id;
     private String city;
     private LocalDate date;
