@@ -12,7 +12,7 @@ import java.time.LocalDate;
 //JPA will create a table for us using the entity annotation
 
     @Entity
-    public class MatchOutput {
+    public class Match {
 
         @Id
         private long id;
