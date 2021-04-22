@@ -1,6 +1,8 @@
 package io.springboot.ipldashboard.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 //creating a table for teams - to do that just add an entity to the class and jpa would create the table for you
@@ -8,7 +10,12 @@ import javax.persistence.Id;
 public class Team { //now we have a team instance 
 
     @Id //Specifies the primary key of an entity
-    private long id;
+    /*
+        ERROR: javax.persistence.EntityExistsException: A different object with the same identifier value was already associated with the session : [io.springboot.ipldashboard.model.Team#0]
+        We need to tell spring boot to create its own identifiers and to do that ...
+    */
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id; // telling jpa this id is generated value as identifier. Just Auto generate the identifier
 
     private String teamName;
 
@@ -51,6 +58,22 @@ public class Team { //now we have a team instance
         this.totalWins = totalWins;
     }
 
+
+
+    //Create an Constructor for teamName and totalMatches
+    public Team(String teamName, long totalMatches) {
+        this.teamName = teamName;
+        this.totalMatches = totalMatches;
+    }
+
+
+
+    // to verify create toString method that returns 
+    @Override
+    public String toString() {
+        return "Team [teamName=" + teamName + ", totalMatches=" + totalMatches + ", totalWins=" + totalWins + "]";
+    }
+    
     
     
 }
