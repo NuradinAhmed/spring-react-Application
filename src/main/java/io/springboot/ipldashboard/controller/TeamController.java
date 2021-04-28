@@ -17,9 +17,11 @@ public class TeamController {
 
     private TeamRepository teamRepository;
 
-    public TeamController(TeamRepository teamRepository){
+    //Dependecy injection: public constructor 
+    public TeamController(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
     }
+    
 
     //this method will be mapped to the url based on the API endPoint [teams/<teamName>]
     @GetMapping("/team/{teamName}") //map is paramterized!
@@ -28,5 +30,7 @@ public class TeamController {
         //eventaully will return team istance 
         return this.teamRepository.findByTeamName(teamName);
     }
+
+  
     
 }

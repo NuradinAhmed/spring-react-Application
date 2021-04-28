@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import io.springboot.ipldashboard.model.Team;
 
 /*
+    Defining an Interface: Which we will use to call on our controller
     This is an interface that takes in two generic types <Team>, the thing we are fetching and an Id <long> type
     CrudRepository allows 
 */
