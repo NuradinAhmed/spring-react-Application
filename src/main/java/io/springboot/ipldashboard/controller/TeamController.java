@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.springboot.ipldashboard.model.Team;
+import io.springboot.ipldashboard.repository.MatchRepository;
 import io.springboot.ipldashboard.repository.TeamRepository;
 
 /*
@@ -15,18 +16,36 @@ import io.springboot.ipldashboard.repository.TeamRepository;
 @RestController
 public class TeamController {
 
+    //Injection of dependencies 
     private TeamRepository teamRepository;
+    private MatchRepository matchRepository;
 
-    public TeamController(TeamRepository teamRepository){
+    //Dependecy injection: public constructor 
+    public TeamController(TeamRepository teamRepository, MatchRepository matchRepository) {
         this.teamRepository = teamRepository;
+        this.matchRepository = matchRepository;
     }
+    
 
     //this method will be mapped to the url based on the API endPoint [teams/<teamName>]
     @GetMapping("/team/{teamName}") //map is paramterized!
     public Team getTeam(@PathVariable String teamName){ // and will need to annotate with PathVariable; meaning whatever is in the mapping teamName will need to be passed to the paramter teamName
 
         //eventaully will return team istance 
-        return this.teamRepository.findByTeamName(teamName);
+       // return this.teamRepository.findByTeamName(teamName);
+       
+        Team team =  this.teamRepository.findByTeamName(teamName);
+        team.setMatches(matchRepository.getByTeam1OrTeam2OrderByDateDesc(teamName, teamName));
+
+
+
+
+        return team;
+       
     }
+
+
+
+  
     
 }
