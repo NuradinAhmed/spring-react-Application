@@ -1,5 +1,7 @@
 package io.springboot.ipldashboard.controller;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +37,10 @@ public class TeamController {
        // return this.teamRepository.findByTeamName(teamName);
        
         Team team =  this.teamRepository.findByTeamName(teamName);
-        team.setMatches(matchRepository.getByTeam1OrTeam2OrderByDateDesc(teamName, teamName));
+        //In the teamController - Iam going to specify the options return top 4 since they've already been order by date
+       // Pageable pageable = PageRequest.of(0, 4); //kCreates a new unsorted PageRequest.Parameters:page zero-based page index, must not be negative.size the size of the page to be returned, must be greater than 0.
+       //here now get me the teamName and last 4matches 
+       team.setMatches(matchRepository.findLatestMatchesbyTeam(teamName, 4));
 
 
 
