@@ -36,3 +36,8 @@ B.	Creating its getters and setters methods.
 (2-Creating an intermediate processer – per spring.io batch guide- a common paradigm in batch processing is to ingest data, transform it, and then pipe it out somewhere else- in our case into the hsql database. Here we are going to write simple transformer)
 
 
+The API Design:
+ the API will beased on the UI - meaning if the UI changes the api will have to be considered for change too while the other approach is building API based on exposing the 
+  data back-end more like complete REST API and would stay the same if the UI changes but would require more calling from UI.
+  1- Team API - takes teamName and returns team information
+  ![image](https://user-images.githubusercontent.com/8764914/115947335-a0545900-a4cf-11eb-9dcf-3da15a1822c0.png)
