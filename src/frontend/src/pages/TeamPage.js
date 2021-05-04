@@ -1,4 +1,5 @@
 import {React, useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import { MatchDetailCard } from '../components/MatchDetailCard';
 import { MatchSmallCard } from '../components/MatchSmallCard';
 
@@ -12,6 +13,8 @@ export const TeamPage = () => {
         //creating a state, team is state and setTeam is a way to populate that state
     const [team, setTeam] = useState({matches: []});
 
+    const {teamName } = useParams();
+
 
     /*By using this Hook -useEffect, we tell React that our component needs to do something after render. 
         React will remember the function we passed (we’ll refer to it as our “effect”), and call it later after performing the DOM updates. 
@@ -21,7 +24,7 @@ export const TeamPage = () => {
         () => {
             //async/await syntax fits great with fetch() because it simplifies the work with promises.
             const fetchMatches = async () => { //2. I want fetchMatches to be called-
-                const response = await fetch("http://localhost:8080/team/Rajasthan%20Royals"); //3.And the fetchMatches is making call to hardcoded uri 
+                const response = await fetch(`http://localhost:8080/team/${teamName}`); //3.And the fetchMatches is making call to hardcoded uri 
                 const data = await response.json();
                 //console.log(data);
                 setTeam(data); //4. the response is being set to this state setTeam.
@@ -30,25 +33,27 @@ export const TeamPage = () => {
             fetchMatches();
             
             //1. when the component loads which is this empty array 
-        },[] //this is referd to as dependcy list: basically its an empty array and tells to only return first page when you load rather than 
+        },[teamName] //this is referd to as dependcy list: basically its an empty array and tells to only return first page when you load rather than 
             //rather than doing an infinit loop! 
     )
 
-
+    if(!team || !team.teamName) {
+        return <h1>Team not found!</h1>
+    }
 
         //5. In my jsx, in this html, I am using team.teamName which is and rendering 
             //matchdetailcard -the first of the matches in the team object 
 
             //slice: slice(start?: number, end?: number): any[] The beginning of the specified portion of the array. Returns a section of an array.
 
-  return (
+    return (
     <div className="TeamPage">
 
         <h1>{team.teamName}</h1> 
         
-        <MatchDetailCard match = {team.matches[0]}/> 
-
-        {team.matches.slice(1).map(match => <MatchSmallCard match = {match} />)}      
+        <MatchDetailCard teamName = {team.teamName} match = {team.matches[0]}/> 
+            {/* by having the team.teamName defined its going to show what the other team is rather than repeating main team vs so on*/}
+        {team.matches.slice(1).map(match => <MatchSmallCard teamName = {team.teamName} match = {match} />)}      
       
     
     </div>

@@ -8,7 +8,7 @@ function App() {
       {/* This is our RouterTag that will allows us to define route that will contain a path */}
       <Router>
 
-        <Route path="/teams">
+        <Route path="/teams/:teamName">
           <TeamPage/>
         </Route>
         
