@@ -1,5 +1,6 @@
 import {React} from 'react';
 
+
 import {Link } from 'react-router-dom';
 
 {/* and in here, i will get the teamName and match for the matchdetail card */}
@@ -10,6 +11,8 @@ export const MatchDetailCard = ({teamName, match}) => {
   const otherTeam = match.team1 === teamName ? match.team2 : match.team1;
 
   const otherTeamRoute = `/teams/${otherTeam}`;
+
+
 
   return (
     <div className="MatchDetailCard">
@@ -23,6 +26,7 @@ export const MatchDetailCard = ({teamName, match}) => {
       <h3> at {match.venue}</h3>
 
       <h4> {match.matchWinner} won by {match.resultMargin} {match.result}</h4>
+
 
     </div>
   );
