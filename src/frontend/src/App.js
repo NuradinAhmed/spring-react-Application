@@ -1,5 +1,7 @@
 import './App.css';
+
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
 import { TeamPage } from './pages/TeamPage';
 import { MatchPage } from './pages/MatchPage';
 
@@ -9,6 +11,7 @@ function App() {
 
       {/* This is our RouterTag that will allows us to define route that will contain a path */}
       <Router>
+
         <Switch>
 
             <Route path="/teams/:teamName/matches/:year">
@@ -21,10 +24,10 @@ function App() {
             </Route>
 
         </Switch>
-        
+
       </Router>
 
-      <TeamPage/>
+      
 
     </div>
   );
