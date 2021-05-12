@@ -5,6 +5,7 @@ import { MatchSmallCard } from '../components/MatchSmallCard';
 
 export const MatchPage = () => {
     
+
     //going to define a state for the match API call: am saying my state = matches and the method calling to that state = setMatches
     const [matches, setMatches] = useState([]);
 
@@ -26,13 +27,16 @@ export const MatchPage = () => {
     )
 
 
+
     return (
     <div className="MatchPage">
 
         <h1>Match Page</h1> 
+
         {
           matches.map(match => <MatchDetailCard teamName = {teamName} match = {match} />)
         }
+
         
     
     </div>
