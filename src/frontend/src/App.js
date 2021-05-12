@@ -6,6 +6,7 @@ import { MatchPage } from './pages/MatchPage';
 function App() {
   return (
     <div className="App">
+
       {/* This is our RouterTag that will allows us to define route that will contain a path */}
       <Router>
         <Switch>
@@ -22,6 +23,9 @@ function App() {
         </Switch>
         
       </Router>
+
+      <TeamPage/>
+
     </div>
   );
 }
