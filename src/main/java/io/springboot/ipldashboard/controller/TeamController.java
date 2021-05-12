@@ -1,15 +1,20 @@
 package io.springboot.ipldashboard.controller;
 
+import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.springboot.ipldashboard.model.Team;
 import io.springboot.ipldashboard.repository.MatchRepository;
 import io.springboot.ipldashboard.repository.TeamRepository;
+
+import io.springboot.ipldashboard.model.Match;
 
 /*
     1. Firts API: this API takes teamName and returns team information. We have team table - looks it up and returns data
@@ -48,6 +53,24 @@ public class TeamController {
 
         return team;
        
+    }
+
+
+    //this method will return list of match instance(getmatches for a team) and make it query parameter rather than path.
+    //      accepting a request parameter and passing an interger for the year and will return list of matches in a year.
+    @GetMapping("/team/{teamName}/matches")
+    public List<Match> getMatchesForTeam(@PathVariable String teamName, @RequestParam int year) {
+        
+        //i want get the match data from the repository but i want get between two dates first and end date
+        LocalDate startDate = LocalDate.of(year, 1, 1);
+        LocalDate endDate = LocalDate.of(year + 1, 1, 1);
+
+        return this.matchRepository.getMatchesByTeamBetweenDates(
+            teamName, 
+            startDate,
+            endDate
+           );
+
     }
 
 
