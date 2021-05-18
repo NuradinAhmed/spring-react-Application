@@ -9,14 +9,17 @@ export const MatchPage = () => {
     //going to define a state for the match API call: am saying my state = matches and the method calling to that state = setMatches
     const [matches, setMatches] = useState([]);
 
-    const teamName = "Delhi Capitals";
+
+    const {teamName, year } = useParams();
 
 
     useEffect(
       () => {
         //asych/await systnx fits great with fetch() b/c it simplifies the work with promise
         const fetchMatches = async () => {
-          const response = await fetch(`http://localhost:8080/team/{teamName}/matches?year=2019`);
+
+          const response = await fetch(`http://localhost:8080/team/{teamName}/matches?year={year}`);
+
           const data = await response.json();
           setMatches(data);
         };
