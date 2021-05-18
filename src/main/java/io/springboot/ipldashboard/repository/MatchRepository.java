@@ -20,7 +20,7 @@ public interface MatchRepository extends CrudRepository <Match, Long> {
     //I can query more //this allows me to write sql queries in method names - I can do order too by field
     //There is also a way to return the top 4 or something: 1. by jpql query or pageable where you will pass as parameter and have it return the last or so pages 
                 //Abstract interface for pagination information - it allows returning page by page so we have to choose which page or how many to return
-    List<Match> getByTeam1OrTeam2OrderByDateDesc(String teamName1, String team2, Pageable pageable);
+    List<Match> getByTeam1OrTeam2OrderByDateDesc(String teamName1, String teamName2, Pageable pageable);
 
             //here we are telling spring jpa that am providing the exact query am going to run in this query
     @Query("select m from Match m where (m.team1 = :teamName or m.team2 = :teamName) and m.date between :dateStart and :dateEnd order by date desc") //this is basically the same as above method except we are using jpa query annotations here 
