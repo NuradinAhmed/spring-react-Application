@@ -3,6 +3,12 @@ import {useParams} from 'react-router-dom';
 import { MatchDetailCard } from '../components/MatchDetailCard';
 import { MatchSmallCard } from '../components/MatchSmallCard';
 
+
+import './TeamPage.scss';
+
+
+
+
 export const TeamPage = () => {
     /*
         to maake the data available - we need to make the data stateful by using the state hook in react.
@@ -49,13 +55,27 @@ export const TeamPage = () => {
     return (
     <div className="TeamPage">
 
-        <h1>{team.teamName}</h1> 
+        <div className="team-name-section">
+
+            <h1 className="team-name">{team.teamName}</h1> </div>
         
-        <MatchDetailCard teamName = {team.teamName} match = {team.matches[0]}/> 
+        <div className="win-loss-section"> 
+
+            Wins / Losses 
+
+        </div>
+
+        <div className="match-detail-section">
+            <h3>Latest Matches</h3>
+            <MatchDetailCard teamName = {team.teamName} match = {team.matches[0]}/>
+         </div> 
+
             {/* by having the team.teamName defined its going to show what the other team is rather than repeating main team vs so on*/}
         {team.matches.slice(1).map(match => <MatchSmallCard teamName = {team.teamName} match = {match} />)}      
       
-    
+        <div>
+            <a href = "#"> More !</a>
+        </div>
     </div>
   );
 }
