@@ -9,7 +9,11 @@ export const MatchPage = () => {
     //going to define a state for the match API call: am saying my state = matches and the method calling to that state = setMatches
     const [matches, setMatches] = useState([]);
 
+
+
     const {teamName, year } = useParams();
+
+
 
     useEffect(
       () => {
