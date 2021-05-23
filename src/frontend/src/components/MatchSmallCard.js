@@ -1,6 +1,9 @@
 import {React} from 'react';
 
+import './MatchSmallCard.scss';
+
 import { Link } from 'react-router-dom'; {/* Link allows us to click teamName and gets its detials card match */}
+
 
 //Accepting the match as a paramter here in the matchsmallcard
 export const MatchSmallCard = ({match, teamName}) => {
@@ -11,8 +14,10 @@ export const MatchSmallCard = ({match, teamName}) => {
 
   const otherTaamRoute = `/teams/${otherTeam}`;
 
+  const isMatchWon = teamName === match.matchWinner;
+
   return (
-    <div className="MatchSmallCard">
+    <div className={isMatchWon ? 'MatchSmallCard won-card' : 'MatchSmallCard lost-card'}>
 
       <h3> vs <Link to={otherTaamRoute}>  {otherTeam}    </Link>   </h3>
 
