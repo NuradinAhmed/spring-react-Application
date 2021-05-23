@@ -3,9 +3,9 @@ import {useParams} from 'react-router-dom';
 import { MatchDetailCard } from '../components/MatchDetailCard';
 import { MatchSmallCard } from '../components/MatchSmallCard';
 
-
 import './TeamPage.scss';
 
+import { PieChart } from 'react-minimal-pie-chart';
 
 
 
@@ -63,6 +63,14 @@ export const TeamPage = () => {
 
             Wins / Losses 
 
+            <PieChart
+                data={[
+                    { title: 'Losses', value: team.totalMatches - team.totalWins, color: '#a34d5d' },
+
+                    { title: 'Wins', value: team.totalWins, color: '#4da375' },
+                ]}
+                />
+
         </div>
 
         <div className="match-detail-section">
@@ -73,8 +81,8 @@ export const TeamPage = () => {
             {/* by having the team.teamName defined its going to show what the other team is rather than repeating main team vs so on*/}
         {team.matches.slice(1).map(match => <MatchSmallCard teamName = {team.teamName} match = {match} />)}      
       
-        <div>
-            <a href = "#"> More !</a>
+        <div className="more-link">
+            <a href = "#"> More ></a>
         </div>
     </div>
   );
