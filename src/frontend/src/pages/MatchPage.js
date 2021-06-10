@@ -3,6 +3,11 @@ import {useParams} from 'react-router-dom';
 import { MatchDetailCard } from '../components/MatchDetailCard';
 import { MatchSmallCard } from '../components/MatchSmallCard';
 
+
+import './MatchPage.scss';
+import { YearSelector } from '../components/YearSelector';
+
+
 export const MatchPage = () => {
     
 
@@ -28,7 +33,7 @@ export const MatchPage = () => {
 
         fetchMatches();
 
-      },[]
+      },[teamName, year] //when either of them change this has to update and make a call for the list year selector
     )
 
 
@@ -36,13 +41,23 @@ export const MatchPage = () => {
     return (
     <div className="MatchPage">
 
-        <h1>Match Page</h1> 
+      <div className="YearSelector">
+          <h3> Select Year </h3>
+          <YearSelector teamName= {teamName}/>
+      </div>
+
+
+      {/* Create a div here to move the whole matches as one large column together to the right side.  */}
+      <div> 
+
+      <h1 className="page-heading">{teamName} matches in {year}</h1> 
+
 
         {
           matches.map(match => <MatchDetailCard teamName = {teamName} match = {match} />)
         }
 
-        
+      </div>
     
     </div>
   );
