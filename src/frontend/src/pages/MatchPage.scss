@@ -1,0 +1,20 @@
+.MatchPage {
+    //display a grid on the matchpage so that i can select the years for the matches 
+
+    display: grid;
+
+    grid-template-columns: 1fr 5fr;
+
+    grid-column-gap: 20px;
+
+    .YearSelector {
+        justify-self: end;
+        padding: 20px;
+    }
+
+
+    .page-heading {
+        margin: 20px;
+    }
+
+}
