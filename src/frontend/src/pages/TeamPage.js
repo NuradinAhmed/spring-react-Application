@@ -29,14 +29,14 @@ export const TeamPage = () => {
     useEffect(
         () => {
             //async/await syntax fits great with fetch() because it simplifies the work with promises.
-            const fetchMatches = async () => { //2. I want fetchMatches to be called-
+            const fetchTeam = async () => { //2. I want fetchMatches to be called-
                 const response = await fetch(`http://localhost:8080/team/${teamName}`); //3.And the fetchMatches is making call to hardcoded uri 
                 const data = await response.json();
                 //console.log(data);
                 setTeam(data); //4. the response is being set to this state setTeam.
 
             };
-            fetchMatches();
+            fetchTeam();
             
             //1. when the component loads which is this empty array 
         },[teamName] //this is referd to as dependcy list: basically its an empty array and tells to only return first page when you load rather than 

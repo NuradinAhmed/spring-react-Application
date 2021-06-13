@@ -35,6 +35,20 @@ public class TeamController {
     }
     
 
+
+    // An API to get all the teams
+    //I need to write a method that gets all teams and return an iterable list of teams and no paramters
+    @GetMapping("/team") 
+    public Iterable<Team> getAllTeam(){
+
+        return this.teamRepository.findAll();
+        
+    }
+
+
+
+
+
     //this method will be mapped to the url based on the API endPoint [teams/<teamName>]
     @GetMapping("/team/{teamName}") //map is paramterized!
     public Team getTeam(@PathVariable String teamName){ // and will need to annotate with PathVariable; meaning whatever is in the mapping teamName will need to be passed to the paramter teamName
