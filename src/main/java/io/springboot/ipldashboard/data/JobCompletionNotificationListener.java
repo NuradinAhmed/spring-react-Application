@@ -12,7 +12,6 @@ import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.listener.JobExecutionListenerSupport;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import io.springboot.ipldashboard.model.Team;
@@ -28,7 +27,6 @@ import io.springboot.ipldashboard.model.Team;
 
         private static final Logger log = LoggerFactory.getLogger(JobCompletionNotificationListener.class);
 
-        //private final JdbcTemplate jdbcTemplate;
         private final EntityManager em;  //EntityManager is the JPA way of interacting with Database - NO need for the jdbctemplate above
 
         @Autowired //Autowiring the Entitymanager here istead of the jdbctemplate that were being used erlier

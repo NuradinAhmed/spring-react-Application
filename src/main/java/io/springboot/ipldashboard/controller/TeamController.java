@@ -54,7 +54,6 @@ public class TeamController {
     public Team getTeam(@PathVariable String teamName){ // and will need to annotate with PathVariable; meaning whatever is in the mapping teamName will need to be passed to the paramter teamName
 
         //eventaully will return team istance 
-       //return this.teamRepository.findByTeamName(teamName);
        
         Team team =  this.teamRepository.findByTeamName(teamName);
         //In the teamController - Iam going to specify the options return top 4 since they've already been order by date
