@@ -24,7 +24,7 @@ export const MatchPage = () => {
         //asych/await systnx fits great with fetch() b/c it simplifies the work with promise
         const fetchMatches = async () => {
 
-          const response = await fetch(`http://localhost:8080/team/${teamName}/matches?year=${year}`); //to read the param add $ to be read
+          const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/team/${teamName}/matches?year=${year}`); //to read the param add $ to be read
 
           const data = await response.json();
           setMatches(data);

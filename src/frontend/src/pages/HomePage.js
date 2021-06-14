@@ -25,7 +25,7 @@ export const HomePage = () => {
         () => {
             //async/await syntax fits great with fetch() because it simplifies the work with promises.
             const fetchAllTeams = async () => { //2. I want fetchMatches to be called-
-                const response = await fetch(`http://localhost:8080/team`); //3.And the fetchMatches is making call to hardcoded uri 
+                const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/team`); //3.And the fetchMatches is making call to hardcoded uri 
                 const data = await response.json();
                 //console.log(data);
                 setTeams(data); //4. the response is being set to this state setTeam.
